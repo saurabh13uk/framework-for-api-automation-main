@@ -12,7 +12,7 @@ Python API automation framework using `requests`, `pytest`, and Postman validati
 - Saves the first 5 posts into a local JSON file.
 - Provides pytest fixtures, parametrized tests, and optional HTML/JUnit reporting.
 - Includes a Postman collection with validation scripts.
-- Includes a concise QA leadership and strategy note.
+
 
 ## Project Structure
 
@@ -75,6 +75,20 @@ Run with reports:
 ```bash
 pytest --html=reports/api_report.html --self-contained-html --junitxml=reports/junit.xml
 ```
+## Logs in Reports
+The framework captures API execution logs during pytest runs and writes them to:
+
+```text
+logs/api_automation.log
+```
+The same log lines are also displayed inside the custom API execution report:
+
+```text
+reports/api_execution_report.html
+reports/api_execution_report.json
+```
+
+Each report entry includes request details, response details, status code, response time, and logs for that API call.
 
 ## Import in IDE
 
