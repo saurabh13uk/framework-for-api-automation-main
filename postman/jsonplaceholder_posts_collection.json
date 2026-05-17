@@ -1,0 +1,139 @@
+{
+  "info": {
+    "name": "JSONPlaceholder Posts API Automation",
+    "description": "Postman automation collection for GET, POST, and DELETE /posts flows.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "GET /posts - validate status 200",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/posts",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "posts"
+          ]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('Status code is 200', function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "pm.test('Response is a non-empty array of posts', function () {",
+              "    const posts = pm.response.json();",
+              "    pm.expect(posts).to.be.an('array').that.is.not.empty;",
+              "    const requiredKeys = ['userId', 'id', 'title', 'body'];",
+              "    requiredKeys.forEach((key) => {",
+              "        pm.expect(posts[0]).to.have.property(key);",
+              "    });",
+              "});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "POST /posts - create post and validate echoed body",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"title\": \"api automation title\",\n  \"body\": \"api automation body\",\n  \"userId\": 1\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/posts",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "posts"
+          ]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('Status code is 201', function () {",
+              "    pm.response.to.have.status(201);",
+              "});",
+              "",
+              "pm.test('Response contains same title and body as request', function () {",
+              "    const requestBody = JSON.parse(pm.request.body.raw);",
+              "    const responseBody = pm.response.json();",
+              "    pm.expect(responseBody.title).to.eql(requestBody.title);",
+              "    pm.expect(responseBody.body).to.eql(requestBody.body);",
+              "    pm.expect(responseBody.userId).to.eql(requestBody.userId);",
+              "    pm.expect(responseBody).to.have.property('id');",
+              "    pm.collectionVariables.set('createdPostId', responseBody.id);",
+              "});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "DELETE /posts/{id} - validate status 200 or 204",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/posts/{{postIdToDelete}}",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "posts",
+            "{{postIdToDelete}}"
+          ]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('Status code is 200 or 204', function () {",
+              "    pm.expect([200, 204]).to.include(pm.response.code);",
+              "});"
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://jsonplaceholder.typicode.com"
+    },
+    {
+      "key": "postIdToDelete",
+      "value": "1"
+    },
+    {
+      "key": "createdPostId",
+      "value": ""
+    }
+  ]
+}

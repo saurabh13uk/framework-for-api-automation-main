@@ -1,0 +1,11 @@
+[project]
+name = "jsonplaceholder-api-automation"
+version = "1.0.0"
+description = "API automation framework using requests and pytest for JSONPlaceholder posts."
+requires-python = ">=3.9"
+dependencies = [
+    "requests==2.32.3",
+    "pytest==8.3.4",
+    "pytest-html==4.1.1",
+    "jsonschema==4.23.0",
+]

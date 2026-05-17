@@ -1,0 +1,91 @@
+# JSONPlaceholder API Automation Framework
+
+Python API automation framework using `requests`, `pytest`, and Postman validation scripts for:
+
+`https://jsonplaceholder.typicode.com/posts`
+
+## What This Framework Covers
+
+- Fetches all posts from the public API.
+- Validates HTTP status code `200`.
+- Verifies every post contains `userId`, `id`, `title`, and `body`.
+- Saves the first 5 posts into a local JSON file.
+- Provides pytest fixtures, parametrized tests, and optional HTML/JUnit reporting.
+- Includes a Postman collection with validation scripts.
+- Includes a concise QA leadership and strategy note.
+
+## Project Structure
+
+```text
+api_automation_framework/
+  api/
+    client.py
+    endpoints.py
+  config/
+    settings.py
+  utils/
+    file_writer.py
+  scripts/
+    fetch_and_save_posts.py
+  tests/
+    conftest.py
+    test_posts_api.py
+  postman/
+    jsonplaceholder_posts_collection.json
+  data/
+    .gitkeep
+  reports/
+    .gitkeep
+  requirements.txt
+  .gitignore
+  pytest.ini
+  pyproject.toml
+  README.md
+  QA_STRATEGY.md
+```
+
+## Setup
+
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+```
+
+## Run the Python Script
+
+```bash
+python scripts/fetch_and_save_posts.py
+```
+
+Output file:
+
+```text
+data/first_5_posts.json
+```
+
+## Run Tests
+
+```bash
+pytest
+```
+
+Run with reports:
+
+```bash
+pytest --html=reports/api_report.html --self-contained-html --junitxml=reports/junit.xml
+```
+
+## Import in IDE
+
+Open this folder directly in PyCharm, VS Code, or another IDE:
+
+```text
+/Users/admin/Documents/build-a-framework-for-api-automation
+```
+
+Set the interpreter to your virtual environment and run either:
+
+- `scripts/fetch_and_save_posts.py`
+- `tests/test_posts_api.py`
+

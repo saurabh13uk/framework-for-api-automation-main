@@ -1,0 +1,53 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[codz]
+*$py.class
+
+# Environments
+.env
+.envrc
+.venv
+env/
+venv/
+ENV/
+
+# Test and tool caches
+.pytest_cache/
+.coverage
+htmlcov/
+.mypy_cache/
+.ruff_cache/
+
+# Test and tool caches
+.pytest_cache/
+.coverage
+htmlcov/
+.mypy_cache/
+.ruff_cache/
+
+# Environment and local configuration
+.env
+.env.*
+!.env.example
+
+# IDE/editor files
+.idea/
+.vscode/
+*.swp
+*.swo
+.DS_Store
+
+# Generated pytest and API reports
+reports/*
+!reports/.gitkeep
+!reports/behave/
+reports/behave/*
+!reports/behave/.gitkeep
+
+# Generated API output data
+data/first_5_posts.json
+!data/.gitkeep
+!data/api_test_data.json
+
+# Logs
+*.log
