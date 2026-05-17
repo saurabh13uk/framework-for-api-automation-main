@@ -81,7 +81,7 @@ pytest --html=reports/api_report.html --self-contained-html --junitxml=reports/j
 Open this folder directly in PyCharm, VS Code, or another IDE:
 
 ```text
-/Users/admin/Documents/build-a-framework-for-api-automation
+/Users/admin/Download/build-a-framework-for-api-automation
 ```
 
 Set the interpreter to your virtual environment and run either:
