@@ -25,6 +25,8 @@ api_automation_framework/
     settings.py
   utils/
     file_writer.py
+    api_reporter.py
+    logger.py
   scripts/
     fetch_and_save_posts.py
   tests/
